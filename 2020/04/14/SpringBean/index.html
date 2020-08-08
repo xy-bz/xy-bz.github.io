@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>SpringBean | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="Bean的配置 详见bean是什么     属性 描述    id id为bean的唯一标识名，，在整个XML中唯一   name 为bean id创建一个或多个别名（区别于id）。如果没有定义bean的id，那么第一个别名就会被作为id；如果也没有定义name，那么自动生成一个id和一个别名（这时的别名为类的全类名且类名首子母小写）   class 定义类的全限定名（包名＋类名）；只有子类Bea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBean">
+<meta property="og:url" content="https://xy-bz.github.io/2020/04/14/SpringBean/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="Bean的配置 详见bean是什么     属性 描述    id id为bean的唯一标识名，，在整个XML中唯一   name 为bean id创建一个或多个别名（区别于id）。如果没有定义bean的id，那么第一个别名就会被作为id；如果也没有定义name，那么自动生成一个id和一个别名（这时的别名为类的全类名且类名首子母小写）   class 定义类的全限定名（包名＋类名）；只有子类Bea">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2020-04-14T04:08:55.000Z">
+<meta property="article:modified_time" content="2020-04-26T14:09:04.551Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">SpringBean</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2020-04-14
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <h3 id="Bean的配置"><a href="#Bean的配置" class="headerlink" title="Bean的配置"></a>Bean的配置</h3><blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://www.awaimai.com/2596.html">bean是什么</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>id为bean的唯一标识名，，在整个XML中唯一</td>
+</tr>
+<tr>
+<td>name</td>
+<td>为bean id创建一个或多个别名（区别于id）。如果没有定义bean的id，那么第一个别名就会被作为id；如果也没有定义name，那么自动生成一个id和一个别名（这时的别名为类的全类名且类名首子母小写）</td>
+</tr>
+<tr>
+<td>class</td>
+<td>定义类的全限定名（包名＋类名）；只有子类Bean不用定义该属性</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>子类Bean定义它所引用它的父类Bean,这时class属性失效。子类Bean会继承父类Bean的所有属性，子类Bean也可以覆盖父类Bean的属性;注意：子类Bean和父类Bean是同一个Java类</td>
+</tr>
+<tr>
+<td>abstract</td>
+<td>默认为”false”，用来定义Bean是否为抽象Bean;它表示这个Bean将不会被实例化，一般用于父类Bean，因为父类Bean主要是供子类Bean继承使用</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>默认为singleton（单例）;如果设prototype（原型）状态，BeanFactory将为每次Bean请求创建一个新的Bean实例</td>
+</tr>
+<tr>
+<td>lazy-init</td>
+<td>定义Bean是否实现懒初始化;默认为“default” ，如果为“true”，它将在BeanFactory启动时初始化所有的SingletonBean;反之，如果为“false”,它只在Bean请求时才开始创建SingletonBean</td>
+</tr>
+<tr>
+<td>autowire</td>
+<td>定义Bean的自动装载方式<br>1.“no”:不使用自动装配功能<br>2.“byName”:通过Bean的属性名实现自动装配<br>3.“byType”:通过Bean的类型实现自动装配<br>4.“constructor”:类似于byType，但它是用于构造函数的参数的自动组装<br>5.“default”：默认值，自动装配</td>
+</tr>
+<tr>
+<td>depends-on</td>
+<td>Bean在初始化时依赖的对象，这个对象在这个Bean初始化之前创建</td>
+</tr>
+<tr>
+<td>destroy-method</td>
+<td>定义Bean的销毁方法，它在BeanFactory关闭时调用；是一个无参数的方法，只能应用于singletonBean</td>
+</tr>
+<tr>
+<td>factory-method</td>
+<td>创建Bean对象的工厂方法</td>
+</tr>
+<tr>
+<td>factory-bean</td>
+<td>创建Bean对象的工厂类；如果使用了“factory-bean”则“class”属性失效</td>
+</tr>
+</tbody></table>
+<h3 id="Spring-配置元数据"><a href="#Spring-配置元数据" class="headerlink" title="Spring 配置元数据"></a>Spring 配置元数据</h3><p>有下面三个重要的方法把配置元数据提供给 Spring 容器：</p>
+<ul>
+<li>基于 XML 的配置文件</li>
+<li>基于注解的配置</li>
+<li>基于 Java 的配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt; </span><br><span class="line"></span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;    xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;    xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans    http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans-3.0.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id&#x3D;&quot;...&quot; class&#x3D;&quot;...&quot;&gt;&lt;&#x2F;bean&gt;    </span><br><span class="line"></span><br><span class="line">    &lt;bean id&#x3D;&quot;...&quot; class&#x3D;&quot;...&quot; lazy-init&#x3D;&quot;true&quot;&gt;&lt;&#x2F;bean&gt;    </span><br><span class="line"> </span><br><span class="line">    &lt;bean id&#x3D;&quot;...&quot; class&#x3D;&quot;...&quot; init-method&#x3D;&quot;...&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id&#x3D;&quot;...&quot; class&#x3D;&quot;...&quot; destroy-method&#x3D;&quot;...&quot;&gt;&lt;&#x2F;bean&gt; </span><br><span class="line"></span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h3><table>
+<thead>
+<tr>
+<th align="left">作用域</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">singleton</td>
+<td align="left">该作用域将 bean 的定义的限制在每一个 Spring IoC 容器中的一个单一实例(默认)。</td>
+</tr>
+<tr>
+<td align="left">prototype</td>
+<td align="left">该作用域将单一 bean 的定义限制在任意数量的对象实例。</td>
+</tr>
+<tr>
+<td align="left">request</td>
+<td align="left">该作用域将 bean 的定义限制为 HTTP 请求。只在 web-aware Spring ApplicationContext 的上下文中有效</td>
+</tr>
+<tr>
+<td align="left">session</td>
+<td align="left">该作用域将 bean 的定义限制为 HTTP 会话。 只在web-aware Spring ApplicationContext的上下文中有效</td>
+</tr>
+<tr>
+<td align="left">global-session</td>
+<td align="left">该作用域将 bean 的定义限制为全局 HTTP 会话。只在 web-aware Spring ApplicationContext 的上下文中有效</td>
+</tr>
+</tbody></table>
+<h2 id="singleton-作用域："><a href="#singleton-作用域：" class="headerlink" title="singleton 作用域："></a>singleton 作用域：</h2><p>如果作用域设置为 singleton，那么 Spring IoC 容器刚好创建一个由该 bean 定义的对象的实例。该单一实例将存储在这种单例 bean 的高速缓存中，以及针对该 bean 的所有后续的请求和引用都返回缓存对象。</p>
+<p>默认作用域是始终是 singleton，但是当仅仅需要 bean 的一个实例时，你可以在 bean 的配置文件中设置作用域的属性为 singleton，如下所示：</p>
+<h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>理解 Spring bean 的生命周期很容易。当一个 bean 被实例化时，它可能需要执行一些初始化使它转换成可用状态。同样，当 bean 不再需要，并且从容器中移除时，可能需要做一些清除工作。</p>
+<p>尽管还有一些在 Bean 实例化和销毁之间发生的活动，但是本章将只讨论两个重要的生命周期回调方法，它们在 bean 的初始化和销毁的时候是必需的。</p>
+<p>为了定义安装和拆卸一个 bean，我们只要声明带有 <strong>init-method</strong> 和/或 <strong>destroy-method</strong> 参数的 。init-method 属性指定一个方法，在实例化 bean 时，立即调用该方法。同样，destroy-method 指定一个方法，只有从容器中移除 bean 之后，才能调用该方法。</p>
+<p>Bean的生命周期可以表达为：Bean的定义——Bean的初始化——Bean的使用——Bean的销毁</p>
+<h3 id="Bean的装配方式"><a href="#Bean的装配方式" class="headerlink" title="Bean的装配方式"></a>Bean的装配方式</h3><blockquote>
+<ul>
+<li>基于XML的装配</li>
+<li>基于注解的装配</li>
+<li>自动装配</li>
+</ul>
+</blockquote>
+<h4 id="基于XML的装配"><a href="#基于XML的装配" class="headerlink" title="基于XML的装配"></a>基于XML的装配</h4><p>方式一：设置注入 ：**<em>在配置文件中，使用元素来为每个属性注入值**</em></p>
+<p>方式二：构造注入：**<em>在配置文件中，使用元素来为参数注入值**</em></p>
+<h4 id="基于注解的装配"><a href="#基于注解的装配" class="headerlink" title="基于注解的装配"></a>基于注解的装配</h4><p>基于XML的装配可能会导致XML配置文件过于臃肿，Spring提供Annotation（注解）来解决问题</p>
+<img src="/%E6%B3%A8%E8%A7%A3.png" class>
+
+<h4 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h4><p> 自动装配，就是将一个Bean自动的注入到到其他Bean的Property中。 Spring的元素中包含一个autowire属性，我们可以通过设置autowire的属性值来自动装配Bean。autowire属性有5个值，其值及说明下表所示： </p>
+<img src="/%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D.png" class>
+
+<blockquote>
+<p>参考： </p>
+<p><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/wkspring/8kei1icc.html">Spring Bean 定义</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hong10086/article/details/83214554">spring bean元素的内置属性和子元素</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5d2f01ba5188254bb81660df#heading-7">Spring中Bean的装配方式</a></p>
+</blockquote>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2020/04/14/SpringBean/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2020/04/14/SpringBean/";
+            const title         = "「SpringBean」";
+            const excerpt       = `Bean的配置
+详见bean是什么
+
+
+
+
+属性
+描述
+
+
+
+id
+id为bean的唯一标识名，，在整个XML中唯一
+
+
+name
+为bean id创建一个或多个别名（区别于id）。如果没有定义bean的id，那么第一个别名就会被作为...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/java/" rel="tag">java</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2020-04-26</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 依赖注入类型" href="/2020/04/14/依赖注入类型/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" 积分计算不定积分" href="/2020/04/17/积分计算/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2020/04/14/SpringBean/',
+            url: 'https://xy-bz.github.io/2020/04/14/SpringBean/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>

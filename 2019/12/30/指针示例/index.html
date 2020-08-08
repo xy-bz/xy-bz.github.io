@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>指针示例 | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="指针示例学习了计算机组成原理之后，对指针有了新的认识 首先是计算机存储结构   当程序运行时，我们关注寄存器和主存 写一段指针的代码 1234567int main()&amp;#123;    int y &#x3D; 0;    int *p&#x3D;&amp;y;    *p &#x3D; 1;    return 0;&amp;#125;  反汇编 12345678910    int y &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指针示例">
+<meta property="og:url" content="https://xy-bz.github.io/2019/12/30/%E6%8C%87%E9%92%88%E7%A4%BA%E4%BE%8B/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="指针示例学习了计算机组成原理之后，对指针有了新的认识 首先是计算机存储结构   当程序运行时，我们关注寄存器和主存 写一段指针的代码 1234567int main()&amp;#123;    int y &#x3D; 0;    int *p&#x3D;&amp;y;    *p &#x3D; 1;    return 0;&amp;#125;  反汇编 12345678910    int y &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2019-12-30T09:37:27.000Z">
+<meta property="article:modified_time" content="2019-12-30T12:48:14.228Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="c">
+<meta property="article:tag" content="指针">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">指针示例</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2019-12-30
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <h1 id="指针示例"><a href="#指针示例" class="headerlink" title="指针示例"></a>指针示例</h1><p>学习了计算机组成原理之后，对指针有了新的认识</p>
+<p>首先是计算机存储结构</p>
+<img src="/%E5%AD%98%E5%82%A8%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.jpg" class width="400" height="300">
+
+<p>当程序运行时，我们关注寄存器和主存</p>
+<p>写一段指针的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int y &#x3D; 0;</span><br><span class="line">    int *p&#x3D;&amp;y;</span><br><span class="line">    *p &#x3D; 1;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>反汇编</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    int y &#x3D; 0;</span><br><span class="line">010216A8  mov         dword ptr [y],0  </span><br><span class="line">    int *p&#x3D;&amp;y;</span><br><span class="line">010216AF  lea         eax,[y]  </span><br><span class="line">010216B2  mov         dword ptr [p],eax  </span><br><span class="line">    *p &#x3D; 1;</span><br><span class="line">010216B5  mov         eax,dword ptr [p]  </span><br><span class="line">010216B8  mov         dword ptr [eax],1  </span><br><span class="line">    return 0;</span><br><span class="line">010216BE  xor         eax,eax  </span><br></pre></td></tr></table></figure>
+
+<p><strong>我的汇编代码格式是Intel的，dword ptr [p]表示一个内存的位置</strong></p>
+<ul>
+<li><p>在指令中，如果指明了某个专用寄存器，也就指明了要处理的数据的尺寸 </p>
+</li>
+<li><p>在没有寄存器名存在的情况下，用操作符 X ptr 指明内存单元的长度，X可以是word或byte ;</p>
+</li>
+<li><p>有些指令默认了访问的是字单元还是字节单元，比如：push [1000H] 就不用指明访问的是字单元还是字节单元，因为push指令只进行字操作。 </p>
+</li>
+</ul>
+<p><em>Intel的字（word）表示16位数据；一字节八位；b,w,l,q对应1,2,4,8字节</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    int y &#x3D; 0;</span><br><span class="line">010216A8  mov         dword ptr [y],0  </span><br><span class="line">    int *p&#x3D;&amp;y;</span><br><span class="line">010216AF  lea         eax,[y]  </span><br><span class="line">010216B2  mov         dword ptr [p],eax  </span><br></pre></td></tr></table></figure>
+
+<p>所以让指针p指向y实际是三条指令</p>
+<blockquote>
+<ol>
+<li><p>把立即数0传到内存y中，给y赋值            int y = 0;</p>
+</li>
+<li><p>取内存y的有效地址，传到寄存器eax中        &y;</p>
+</li>
+<li><p>把寄存器eax的值，传到内存y中            赋值</p>
+</li>
+</ol>
+</blockquote>
+<p>c和指针中说，等号左边是地址，右边是一个值，指针存放的是指向的地址<br>在汇编中，就有了更直观的体现<br>比如c语言的值传递和地址传递</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void swap0(int a0, int b0) </span><br><span class="line">&#123;</span><br><span class="line">    int tmp0 &#x3D; b0;</span><br><span class="line">    b0 &#x3D; a0;</span><br><span class="line">    a0 &#x3D; tmp0;</span><br><span class="line">&#125;</span><br><span class="line">void swap1(int *a1, int *b1) </span><br><span class="line">&#123;</span><br><span class="line">    int tmp1 &#x3D; *b1;</span><br><span class="line">    *b1 &#x3D; *a1;</span><br><span class="line">    *a1 &#x3D; tmp1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int x0 &#x3D; 1,y0 &#x3D; 2;</span><br><span class="line">    int x1 &#x3D; 2, y1 &#x3D; 2;</span><br><span class="line">    swap0(x0, y0);</span><br><span class="line">    swap1(&amp;x1, &amp;y1);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>反汇编</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    int x0 &#x3D; 0,x1 &#x3D; 1;</span><br><span class="line">00C44568  mov         dword ptr [x0],0  </span><br><span class="line">00C4456F  mov         dword ptr [x1],1  </span><br><span class="line">    int y0 &#x3D; 0, y1 &#x3D; 1;</span><br><span class="line">00C44576  mov         dword ptr [y0],0  </span><br><span class="line">00C4457D  mov         dword ptr [y1],1  </span><br><span class="line">    swap0(x0, x1);</span><br><span class="line">00C44584  mov         eax,dword ptr [x1]  </span><br><span class="line">00C44587  push        eax  </span><br><span class="line">00C44588  mov         ecx,dword ptr [x0]  </span><br><span class="line">00C4458B  push        ecx  </span><br><span class="line">00C4458C  call        swap0 (0C41343h)  </span><br><span class="line">00C44591  add         esp,8  </span><br><span class="line">    swap1(&amp;y0, &amp;y1);</span><br><span class="line">00C44594  lea         eax,[y1]  </span><br><span class="line">00C44597  push        eax  </span><br><span class="line">00C44598  lea         ecx,[y0]  </span><br><span class="line">00C4459B  push        ecx  </span><br><span class="line">00C4459C  call        swap1 (0C41348h)  </span><br><span class="line">00C445A1  add         esp,8  </span><br><span class="line">    return 0;</span><br><span class="line">00C445A4  xor         eax,eax</span><br></pre></td></tr></table></figure>
+
+
+<p>对比下两边的操作</p>
+<table>
+<thead>
+<tr>
+<th>swap0（值传递）</th>
+<th>swap1(地址传递)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>mov</em>        eax,dword ptr [x1]</td>
+<td><em>lea</em>         eax,[y1]</td>
+</tr>
+<tr>
+<td>拷贝了一份值传到寄存器eax</td>
+<td>取了y1的地址到eax</td>
+</tr>
+</tbody></table>
+<p>swap0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int tmp0 &#x3D; b0;</span><br><span class="line">00C4169E  mov         eax,dword ptr [b0]  </span><br><span class="line">00C416A1  mov         dword ptr [tmp0],eax  </span><br><span class="line">    b0 &#x3D; a0;</span><br><span class="line">00C416A4  mov         eax,dword ptr [a0]  </span><br><span class="line">00C416A7  mov         dword ptr [b0],eax  </span><br><span class="line">    a0 &#x3D; tmp0;</span><br><span class="line">00C416AA  mov         eax,dword ptr [tmp0]  </span><br><span class="line">00C416AD  mov         dword ptr [a0],eax  </span><br></pre></td></tr></table></figure>
+<p>swap1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int tmp1 &#x3D; *b1;</span><br><span class="line">00C416DE  mov         eax,dword ptr [b1]  </span><br><span class="line">00C416E1  mov         ecx,dword ptr [eax]  </span><br><span class="line">00C416E3  mov         dword ptr [tmp1],ecx  </span><br><span class="line">    *b1 &#x3D; *a1;</span><br><span class="line">00C416E6  mov         eax,dword ptr [b1]  </span><br><span class="line">00C416E9  mov         ecx,dword ptr [a1]  </span><br><span class="line">00C416EC  mov         edx,dword ptr [ecx]  </span><br><span class="line">00C416EE  mov         dword ptr [eax],edx  </span><br><span class="line">    *a1 &#x3D; tmp1;</span><br><span class="line">00C416F0  mov         eax,dword ptr [a1]  </span><br><span class="line">00C416F3  mov         ecx,dword ptr [tmp1]  </span><br><span class="line">00C416F6  mov         dword ptr [eax],ecx  </span><br></pre></td></tr></table></figure>
+
+<p>两边的函数确实都交换了，不同</p>
+<table>
+<thead>
+<tr>
+<th align="center">swap0</th>
+<th align="center">swap1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">交换拷贝的值</td>
+<td align="center">按地址寻址，交换的实际是内存中的值</td>
+</tr>
+</tbody></table>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2019/12/30/%E6%8C%87%E9%92%88%E7%A4%BA%E4%BE%8B/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2019/12/30/%E6%8C%87%E9%92%88%E7%A4%BA%E4%BE%8B/";
+            const title         = "「指针示例」";
+            const excerpt       = `指针示例学习了计算机组成原理之后，对指针有了新的认识
+首先是计算机存储结构
+
+
+当程序运行时，我们关注寄存器和主存
+写一段指针的代码
+1234567int main()&#123;    int y &#x3D; 0;    int ...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/c/" rel="tag">c</a>, <a class="tag-none-link" href="/tags/%E6%8C%87%E9%92%88/" rel="tag">指针</a>, <a class="tag-none-link" href="/tags/%E6%B1%87%E7%BC%96/" rel="tag">汇编</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2019-12-30</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" vs笔记" href="/2019/12/29/vs笔记/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" Cache映射" href="/2019/12/30/cache映射/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2019/12/30/指针示例/',
+            url: 'https://xy-bz.github.io/2019/12/30/%E6%8C%87%E9%92%88%E7%A4%BA%E4%BE%8B/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>

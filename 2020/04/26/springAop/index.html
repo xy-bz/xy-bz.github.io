@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>springAop | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="Aop概念面向切面编程， 指扩展功能不修改源代码，将功能代码从业务逻辑代码中分离出来 ；与oop面向对象编程相辅相成 通俗理解： 比如有几个业务，都要写日志，原来是分开都执行，现在把写日志功能抽出来，通过切面类去处理；其实aop也有一点解耦的思想 Aop术语切面：（Aspect）抽离出来的类 连接点：程序运行时的时间点 切入点：需要处理的连接点 通知：（advicce）切面类的方法 通知类型：嵌入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springAop">
+<meta property="og:url" content="https://xy-bz.github.io/2020/04/26/springAop/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="Aop概念面向切面编程， 指扩展功能不修改源代码，将功能代码从业务逻辑代码中分离出来 ；与oop面向对象编程相辅相成 通俗理解： 比如有几个业务，都要写日志，原来是分开都执行，现在把写日志功能抽出来，通过切面类去处理；其实aop也有一点解耦的思想 Aop术语切面：（Aspect）抽离出来的类 连接点：程序运行时的时间点 切入点：需要处理的连接点 通知：（advicce）切面类的方法 通知类型：嵌入">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2020-04-26T09:29:57.000Z">
+<meta property="article:modified_time" content="2020-04-26T12:12:49.028Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">springAop</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2020-04-26
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <h3 id="Aop概念"><a href="#Aop概念" class="headerlink" title="Aop概念"></a>Aop概念</h3><p>面向切面编程， 指扩展功能不修改源代码，将功能代码从业务逻辑代码中分离出来 ；与oop面向对象编程相辅相成</p>
+<p>通俗理解： 比如有几个业务，都要写日志，原来是分开都执行，现在把写日志功能抽出来，通过切面类去处理；其实aop也有一点解耦的思想</p>
+<h4 id="Aop术语"><a href="#Aop术语" class="headerlink" title="Aop术语"></a>Aop术语</h4><p><strong>切面</strong>：（Aspect）抽离出来的类</p>
+<p><strong>连接点</strong>：程序运行时的时间点</p>
+<p><strong>切入点</strong>：需要处理的连接点</p>
+<p><strong>通知</strong>：（advicce）切面类的方法</p>
+<p><strong>通知类型</strong>：嵌入目标对象方法时的插入类型 </p>
+<ul>
+<li><strong>前置通知</strong>：在方法之前执行</li>
+<li><strong>后置通知</strong>：在方法之后执行</li>
+<li><strong>异常通知</strong>：方法出现异常执行</li>
+<li><strong>最终通知</strong>：在后置之后执行</li>
+<li><strong>环绕通知</strong>：在方法之前和之后执行</li>
+</ul>
+<p><strong>引入</strong>：允许添加实现类属性和方法</p>
+<p><strong>目标对象</strong>：被通知的对象</p>
+<p><strong>代理</strong>：通知加到目标后的创建的的对象</p>
+<p><strong>织入</strong>：将切面插入的代码的方法</p>
+<ul>
+<li>编译期织入</li>
+<li>类装载期织入</li>
+<li>动态代理织入</li>
+</ul>
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><blockquote>
+<p>java有多种动态代理技术，最常用jdk和CGLib</p>
+</blockquote>
+<h4 id="jdk的动态代理"><a href="#jdk的动态代理" class="headerlink" title="jdk的动态代理"></a>jdk的动态代理</h4><p> 只能对实现了接口的类生成代理，而不是针对类，该目标类型实现的接口都将被代理。原理是通过在运行期间创建一个接口的实现类来完成对目标对象的代理</p>
+<h4 id="CGLib的动态代理"><a href="#CGLib的动态代理" class="headerlink" title="CGLib的动态代理"></a>CGLib的动态代理</h4><p>   针对类实现代理，对是否实现接口无要求。原理是对指定的类生成一个子类，覆盖其中的方法，因为是继承，所以被代理的类或方法最好不要声明为final类型</p>
+<h3 id="AspectJ开发"><a href="#AspectJ开发" class="headerlink" title="AspectJ开发"></a>AspectJ开发</h3><p> 支持注解开发切面的注解集合被称为“@AspectJ”注解。在AspectJ5中，我们不仅可以使用基于注解的方式来开发切面，也可以使用基于代码的方式来开发切面，也可以混用它们</p>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2020/04/26/springAop/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2020/04/26/springAop/";
+            const title         = "「springAop」";
+            const excerpt       = `Aop概念面向切面编程， 指扩展功能不修改源代码，将功能代码从业务逻辑代码中分离出来 ；与oop面向对象编程相辅相成
+通俗理解： 比如有几个业务，都要写日志，原来是分开都执行，现在把写日志功能抽出来，通过切面类去处理；其实aop也有一...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/java/" rel="tag">java</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2020-04-26</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 小结3" href="/2020/04/25/小结3/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" spring的事务管理" href="/2020/04/26/spring的事务管理/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2020/04/26/springAop/',
+            url: 'https://xy-bz.github.io/2020/04/26/springAop/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>

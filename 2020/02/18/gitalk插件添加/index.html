@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>gitalk插件添加 | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="今天更行了博客gitalk插件，记录如下 安装步骤1.创建一个新仓库这个仓库用来存放评论 2.申请一个OAuth application给Gitalk权限，更改仓库内容 申请信息   12345Application name：必填，OAuth的名字Homepage URL：必填，你应用的网址，哪个网站用了Gitalk组件，就填写这个网址Application description：选填，该OA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitalk插件添加">
+<meta property="og:url" content="https://xy-bz.github.io/2020/02/18/gitalk%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="今天更行了博客gitalk插件，记录如下 安装步骤1.创建一个新仓库这个仓库用来存放评论 2.申请一个OAuth application给Gitalk权限，更改仓库内容 申请信息   12345Application name：必填，OAuth的名字Homepage URL：必填，你应用的网址，哪个网站用了Gitalk组件，就填写这个网址Application description：选填，该OA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2020-02-18T15:52:34.000Z">
+<meta property="article:modified_time" content="2020-02-18T23:31:07.030Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="报错">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">gitalk插件添加</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2020-02-18
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <p>今天更行了博客gitalk插件，记录如下</p>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="1-创建一个新仓库"><a href="#1-创建一个新仓库" class="headerlink" title="1.创建一个新仓库"></a>1.创建一个新仓库</h4><p>这个仓库用来存放评论</p>
+<h4 id="2-申请一个OAuth-application"><a href="#2-申请一个OAuth-application" class="headerlink" title="2.申请一个OAuth application"></a>2.申请一个OAuth application</h4><p>给Gitalk权限，更改仓库内容</p>
+<p>申请信息</p>
+<img src="/%E7%94%B3%E8%AF%B7.png" class width="400" height="470">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Application name：必填，OAuth的名字</span><br><span class="line">Homepage URL：必填，你应用的网址，哪个网站用了Gitalk组件，就填写这个网址</span><br><span class="line">Application description：选填，该OAuth的说明</span><br><span class="line">Authorization callback URL：必填，授权成功后回调网址，跟Homepage URL参数保持一致就好</span><br><span class="line">这些参数在注册成功后是可以修改</span><br></pre></td></tr></table></figure>
+
+<p>注册完成后会有一个<strong>ClientID</strong><code>和</code><strong>ClientSecret</strong>，这是我们需要的信息</p>
+<h4 id="3-在-config-yml中配置"><a href="#3-在-config-yml中配置" class="headerlink" title="3.在_config.yml中配置"></a>3.在_config.yml中配置</h4><p>由于我的主题中已经写好了gitalk，就不需要安装，只要配置一下就行了</p>
+<p>配置参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">clientID: &#39;&#39;, &#x2F;&#x2F; GitHub Application Client ID</span><br><span class="line">  clientSecret: &#39;&#39;,</span><br><span class="line">  repo: &#39;&#39;      &#x2F;&#x2F; 存放评论的仓库</span><br><span class="line">  owner: &#39;&#39;,          &#x2F;&#x2F; 仓库的创建者，</span><br><span class="line">  admin: [&#39;&#39;],        &#x2F;&#x2F; 如果仓库有多个人可以操作，那么在这里以数组形式写出</span><br><span class="line">  id: location.pathname,      &#x2F;&#x2F; 用于标记评论是哪个页面的</span><br></pre></td></tr></table></figure>
+
+<p><strong>遇到的问题</strong></p>
+<img src="/%E6%8A%A5%E9%94%99.png" class width="668" height="190">
+
+<p>开始都配置好了，可以运行了，前端可以显示，但一直报Error: Bad credentials.</p>
+<p>去谷歌了一下，只找到了一篇关于这个错误的；他的解决办法是加上引号，我就试着改了几下，问题依然没有解决</p>
+<p>我点了一下使用GitHub登录，界面跳404了；这时我发现他的网址栏是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;authorize?client_id&#x3D;undefined&amp;redirect_uri&#x3D;http%3A%2F%2Flocalhost%3A5000%2F2020%2F02%2F18%2Fgitalk%25E6%258F%2592%25E4%25BB%25B6%25E6%25B7%25BB%25E5%258A%25A0%2F&amp;scope&#x3D;public_repo</span><br></pre></td></tr></table></figure>
+
+<p><strong>client_id</strong>这一项的参数是未定义的；我会过头来看我的配置，检查了一下，没发现问题；我觉得有可能还是引号的问题，有可能我多打了引号他识别出错；我就查了他给赋值的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    var gitalk &#x3D; new Gitalk(&#123;</span><br><span class="line">        clientID: &#39;&lt;%&#x3D; config.gitalk.client_id %&gt;&#39;,</span><br><span class="line">        clientSecret: &#39;&lt;%&#x3D; config.gitalk.client_secret %&gt;&#39;,</span><br><span class="line">        repo: &#39;&lt;%&#x3D; config.gitalk.repo %&gt;&#39;,</span><br><span class="line">        owner: &#39;&lt;%&#x3D; config.gitalk.owner %&gt;&#39;,</span><br><span class="line">        admin: [&#39;&lt;%&#x3D; config.gitalk.owner %&gt;&#39;],</span><br><span class="line">        distractionFreeMode: true,</span><br><span class="line">         id: location.pathname,</span><br><span class="line">    &#125;)</span><br><span class="line">    gitalk.render(&#39;gitalk-container&#39;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>代码中已经把引号都加上了，表示字符串，所以我确定，在配置里，我都不用写引号；代码是正确的，配置中也写了，但结果是未定义的；</p>
+<p>最后经过一个多小时的检查，发现问题是出在配置上；我发现我的配置文件里是clientID，而我脚本里面对应的是client_id；我写配置的时候是直接copy网上的代码，结果这时翻译开着在，复制过来的是中文；</p>
+<p>修改后，正确的进入了初始化</p>
+<img src="/%E6%88%90%E5%8A%9F.png" class width="452" height="154">
+
+<p>修改后又遇到了另一个问题</p>
+<img src="/%E6%8A%A5%E9%94%991.png" class>
+
+<p>Error: Validation Failed这个错误的原因是issue的名字不能超过50</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30642561/article/details/97126103">参考文章</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30642561/article/details/97126103">https://blog.csdn.net/weixin_30642561/article/details/97126103</a></p>
+<p>新建一个<strong>md5.min.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!function(n)&#123;&quot;use strict&quot;;function t(n,t)&#123;var r&#x3D;(65535&amp;n)+(65535&amp;t);return(n&gt;&gt;16)+(t&gt;&gt;16)+(r&gt;&gt;16)&lt;&lt;16|65535&amp;r&#125;function r(n,t)&#123;return n&lt;&lt;t|n&gt;&gt;&gt;32-t&#125;function e(n,e,o,u,c,f)&#123;return t(r(t(t(e,n),t(u,f)),c),o)&#125;function o(n,t,r,o,u,c,f)&#123;return e(t&amp;r|~t&amp;o,n,t,u,c,f)&#125;function u(n,t,r,o,u,c,f)&#123;return e(t&amp;o|r&amp;~o,n,t,u,c,f)&#125;function c(n,t,r,o,u,c,f)&#123;return e(t^r^o,n,t,u,c,f)&#125;function f(n,t,r,o,u,c,f)&#123;return e(r^(t|~o),n,t,u,c,f)&#125;function i(n,r)&#123;n[r&gt;&gt;5]|&#x3D;128&lt;&lt;r%32,n[14+(r+64&gt;&gt;&gt;9&lt;&lt;4)]&#x3D;r;var e,i,a,d,h,l&#x3D;1732584193,g&#x3D;-271733879,v&#x3D;-1732584194,m&#x3D;271733878;for(e&#x3D;0;e&lt;n.length;e+&#x3D;16)i&#x3D;l,a&#x3D;g,d&#x3D;v,h&#x3D;m,g&#x3D;f(g&#x3D;f(g&#x3D;f(g&#x3D;f(g&#x3D;c(g&#x3D;c(g&#x3D;c(g&#x3D;c(g&#x3D;u(g&#x3D;u(g&#x3D;u(g&#x3D;u(g&#x3D;o(g&#x3D;o(g&#x3D;o(g&#x3D;o(g,v&#x3D;o(v,m&#x3D;o(m,l&#x3D;o(l,g,v,m,n[e],7,-680876936),g,v,n[e+1],12,-389564586),l,g,n[e+2],17,606105819),m,l,n[e+3],22,-1044525330),v&#x3D;o(v,m&#x3D;o(m,l&#x3D;o(l,g,v,m,n[e+4],7,-176418897),g,v,n[e+5],12,1200080426),l,g,n[e+6],17,-1473231341),m,l,n[e+7],22,-45705983),v&#x3D;o(v,m&#x3D;o(m,l&#x3D;o(l,g,v,m,n[e+8],7,1770035416),g,v,n[e+9],12,-1958414417),l,g,n[e+10],17,-42063),m,l,n[e+11],22,-1990404162),v&#x3D;o(v,m&#x3D;o(m,l&#x3D;o(l,g,v,m,n[e+12],7,1804603682),g,v,n[e+13],12,-40341101),l,g,n[e+14],17,-1502002290),m,l,n[e+15],22,1236535329),v&#x3D;u(v,m&#x3D;u(m,l&#x3D;u(l,g,v,m,n[e+1],5,-165796510),g,v,n[e+6],9,-1069501632),l,g,n[e+11],14,643717713),m,l,n[e],20,-373897302),v&#x3D;u(v,m&#x3D;u(m,l&#x3D;u(l,g,v,m,n[e+5],5,-701558691),g,v,n[e+10],9,38016083),l,g,n[e+15],14,-660478335),m,l,n[e+4],20,-405537848),v&#x3D;u(v,m&#x3D;u(m,l&#x3D;u(l,g,v,m,n[e+9],5,568446438),g,v,n[e+14],9,-1019803690),l,g,n[e+3],14,-187363961),m,l,n[e+8],20,1163531501),v&#x3D;u(v,m&#x3D;u(m,l&#x3D;u(l,g,v,m,n[e+13],5,-1444681467),g,v,n[e+2],9,-51403784),l,g,n[e+7],14,1735328473),m,l,n[e+12],20,-1926607734),v&#x3D;c(v,m&#x3D;c(m,l&#x3D;c(l,g,v,m,n[e+5],4,-378558),g,v,n[e+8],11,-2022574463),l,g,n[e+11],16,1839030562),m,l,n[e+14],23,-35309556),v&#x3D;c(v,m&#x3D;c(m,l&#x3D;c(l,g,v,m,n[e+1],4,-1530992060),g,v,n[e+4],11,1272893353),l,g,n[e+7],16,-155497632),m,l,n[e+10],23,-1094730640),v&#x3D;c(v,m&#x3D;c(m,l&#x3D;c(l,g,v,m,n[e+13],4,681279174),g,v,n[e],11,-358537222),l,g,n[e+3],16,-722521979),m,l,n[e+6],23,76029189),v&#x3D;c(v,m&#x3D;c(m,l&#x3D;c(l,g,v,m,n[e+9],4,-640364487),g,v,n[e+12],11,-421815835),l,g,n[e+15],16,530742520),m,l,n[e+2],23,-995338651),v&#x3D;f(v,m&#x3D;f(m,l&#x3D;f(l,g,v,m,n[e],6,-198630844),g,v,n[e+7],10,1126891415),l,g,n[e+14],15,-1416354905),m,l,n[e+5],21,-57434055),v&#x3D;f(v,m&#x3D;f(m,l&#x3D;f(l,g,v,m,n[e+12],6,1700485571),g,v,n[e+3],10,-1894986606),l,g,n[e+10],15,-1051523),m,l,n[e+1],21,-2054922799),v&#x3D;f(v,m&#x3D;f(m,l&#x3D;f(l,g,v,m,n[e+8],6,1873313359),g,v,n[e+15],10,-30611744),l,g,n[e+6],15,-1560198380),m,l,n[e+13],21,1309151649),v&#x3D;f(v,m&#x3D;f(m,l&#x3D;f(l,g,v,m,n[e+4],6,-145523070),g,v,n[e+11],10,-1120210379),l,g,n[e+2],15,718787259),m,l,n[e+9],21,-343485551),l&#x3D;t(l,i),g&#x3D;t(g,a),v&#x3D;t(v,d),m&#x3D;t(m,h);return[l,g,v,m]&#125;function a(n)&#123;var t,r&#x3D;&quot;&quot;,e&#x3D;32*n.length;for(t&#x3D;0;t&lt;e;t+&#x3D;8)r+&#x3D;String.fromCharCode(n[t&gt;&gt;5]&gt;&gt;&gt;t%32&amp;255);return r&#125;function d(n)&#123;var t,r&#x3D;[];for(r[(n.length&gt;&gt;2)-1]&#x3D;void 0,t&#x3D;0;t&lt;r.length;t+&#x3D;1)r[t]&#x3D;0;var e&#x3D;8*n.length;for(t&#x3D;0;t&lt;e;t+&#x3D;8)r[t&gt;&gt;5]|&#x3D;(255&amp;n.charCodeAt(t&#x2F;8))&lt;&lt;t%32;return r&#125;function h(n)&#123;return a(i(d(n),8*n.length))&#125;function l(n,t)&#123;var r,e,o&#x3D;d(n),u&#x3D;[],c&#x3D;[];for(u[15]&#x3D;c[15]&#x3D;void 0,o.length&gt;16&amp;&amp;(o&#x3D;i(o,8*n.length)),r&#x3D;0;r&lt;16;r+&#x3D;1)u[r]&#x3D;909522486^o[r],c[r]&#x3D;1549556828^o[r];return e&#x3D;i(u.concat(d(t)),512+8*t.length),a(i(c.concat(e),640))&#125;function g(n)&#123;var t,r,e&#x3D;&quot;&quot;;for(r&#x3D;0;r&lt;n.length;r+&#x3D;1)t&#x3D;n.charCodeAt(r),e+&#x3D;&quot;0123456789abcdef&quot;.charAt(t&gt;&gt;&gt;4&amp;15)+&quot;0123456789abcdef&quot;.charAt(15&amp;t);return e&#125;function v(n)&#123;return unescape(encodeURIComponent(n))&#125;function m(n)&#123;return h(v(n))&#125;function p(n)&#123;return g(m(n))&#125;function s(n,t)&#123;return l(v(n),v(t))&#125;function C(n,t)&#123;return g(s(n,t))&#125;function A(n,t,r)&#123;return t?r?s(t,n):C(t,n):r?m(n):p(n)&#125;&quot;function&quot;&#x3D;&#x3D;typeof define&amp;&amp;define.amd?define(function()&#123;return A&#125;):&quot;object&quot;&#x3D;&#x3D;typeof module&amp;&amp;module.exports?module.exports&#x3D;A:n.md5&#x3D;A&#125;(this);</span><br></pre></td></tr></table></figure>
+
+<p><strong>在gitalk.ejs引入脚本，并设置id</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;unpkg.com&#x2F;gitalk&#x2F;dist&#x2F;gitalk.css&quot;&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;unpkg.com&#x2F;gitalk&#x2F;dist&#x2F;gitalk.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;js&#x2F;src&#x2F;md5.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"> </span><br><span class="line">   &lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">        var gitalk &#x3D; new Gitalk(&#123;</span><br><span class="line">          clientID: &#39;&#123;&#123; theme.gitalk.ClientID &#125;&#125;&#39;,</span><br><span class="line">          clientSecret: &#39;&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;&#39;,</span><br><span class="line">          repo: &#39;&#123;&#123; theme.gitalk.repo &#125;&#125;&#39;,</span><br><span class="line">          owner: &#39;&#123;&#123; theme.gitalk.githubID &#125;&#125;&#39;,</span><br><span class="line">          admin: [&#39;&#123;&#123; theme.gitalk.adminUser &#125;&#125;&#39;],</span><br><span class="line"> </span><br><span class="line">          id: md5(location.pathname),</span><br><span class="line"> </span><br><span class="line">          distractionFreeMode: &#39;&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(&#39;gitalk-container&#39;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经过一番努力最后终于解决了问题</p>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2020/02/18/gitalk%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2020/02/18/gitalk%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0/";
+            const title         = "「gitalk插件添加」";
+            const excerpt       = `今天更行了博客gitalk插件，记录如下
+安装步骤1.创建一个新仓库这个仓库用来存放评论
+2.申请一个OAuth application给Gitalk权限，更改仓库内容
+申请信息
+
+
+12345Application name：必填，...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/hexo/" rel="tag">hexo</a>, <a class="tag-none-link" href="/tags/%E6%8A%A5%E9%94%99/" rel="tag">报错</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2020-02-19</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" js特效" href="/2020/02/18/js特效/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" seo优化" href="/2020/02/19/seo优化/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2020/02/18/gitalk插件添加/',
+            url: 'https://xy-bz.github.io/2020/02/18/gitalk%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>

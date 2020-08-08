@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>高数基本知识 | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="知识点全为摘录 数列等差数列 等差数列通项公式an&#x3D;a1+(n-1)d 前n项和Sn&#x3D;n(a1+an)&#x2F;2 等比数列 等比数列通项公式an&#x3D;a1*q^(n-1) 前n项和 Sn&#x3D;na1    q&#x3D;1 Sn&#x3D;a1(1-q^n)&#x2F;(1-q)    (q≠1) 常见数列和  1+2+3+4+···n&#x3D;n(n+1)&#x2F;2  1^2+2^2+3^2+···n^2&#x3D;n(n+1)(2n+1)&#x2F;6  1&#x2F;(1x2)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高数基本知识">
+<meta property="og:url" content="https://xy-bz.github.io/2020/01/13/%E9%AB%98%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="知识点全为摘录 数列等差数列 等差数列通项公式an&#x3D;a1+(n-1)d 前n项和Sn&#x3D;n(a1+an)&#x2F;2 等比数列 等比数列通项公式an&#x3D;a1*q^(n-1) 前n项和 Sn&#x3D;na1    q&#x3D;1 Sn&#x3D;a1(1-q^n)&#x2F;(1-q)    (q≠1) 常见数列和  1+2+3+4+···n&#x3D;n(n+1)&#x2F;2  1^2+2^2+3^2+···n^2&#x3D;n(n+1)(2n+1)&#x2F;6  1&#x2F;(1x2)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2020-01-13T05:17:16.000Z">
+<meta property="article:modified_time" content="2020-01-14T09:32:43.852Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="高数">
+<meta property="article:tag" content="考研">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">高数基本知识</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2020-01-13
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <p><strong><em>知识点全为摘录</em></strong></p>
+<h2 id="数列"><a href="#数列" class="headerlink" title="数列"></a>数列</h2><p><strong>等差数列</strong></p>
+<p>等差数列通项公式an=a1+(n-1)d</p>
+<p>前n项和Sn=n(a1+an)/2</p>
+<p><strong>等比数列</strong></p>
+<p>等比数列通项公式an=a1*q^(n-1)</p>
+<p>前n项和</p>
+<p>Sn=na1    q=1</p>
+<p>Sn=a1(1-q^n)/(1-q)    (q≠1)</p>
+<p><strong>常见数列和</strong></p>
+<ul>
+<li><p>1+2+3+4+···n=n(n+1)/2</p>
+</li>
+<li><p>1^2+2^2+3^2+···n^2=n(n+1)(2n+1)/6</p>
+</li>
+<li><p>1/(1x2)+1/(2x3)+1/(3x4)+···1/n(n+1)=n/(n+1)</p>
+</li>
+</ul>
+<h2 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h2><p>奇变偶不变，符号看象限<br>诱导公式<br>sin(-a) = -sin(a)<br>cos(-a) = cos(a)<br>sin(π/2-a) = cos(a)<br>cos(π/2-a) = sin(a)<br>sin(π/2+a) = cos(a)<br>cos(π/2+a) = -sin(a)<br>sin(π-a) = sin(a)<br>cos(π-a) = -cos(a)<br>sin(π+a) = -sin(a)<br>cos(π+a) = -cos(a)<br>tgA=tanA = sinA/cosA<br>两角和公式<br>sin(A+B) = sinAcosB+cosAsinB<br>sin(A-B) = sinAcosB-cosAsinB<br>cos(A+B) = cosAcosB-sinAsinB<br>cos(A-B) = cosAcosB+sinAsinB<br>tan(A+B) = (tanA+tanB)/(1-tanAtanB)<br>tan(A-B) = (tanA-tanB)/(1+tanAtanB)<br>cot(A+B) = (cotAcotB-1)/(cotB+cotA)<br>cot(A-B) = (cotAcotB+1)/(cotB-cotA)<br>倍角公式<br>tan2A = 2tanA/(1-tan² A)<br>Sin2A=2SinA•CosA<br>Cos2A = Cos^2 A–Sin² A<br>=2Cos² A—1<br>=1—2sin^2 A<br>三倍角公式<br>sin3A = 3sinA-4(sinA)³;<br>cos3A = 4(cosA)³ -3cosA<br>tan3a = tan a • tan(π/3+a)• tan(π/3-a)<br>半角公式<br>sin(A/2) = √{(1–cosA)/2}<br>cos(A/2) = √{(1+cosA)/2}<br>tan(A/2) = √{(1–cosA)/(1+cosA)}<br>cot(A/2) = √{(1+cosA)/(1-cosA)} ?<br>tan(A/2) = (1–cosA)/sinA=sinA/(1+cosA)<br>和差化积<br>sin(a)+sin(b) = 2sin[(a+b)/2]cos[(a-b)/2]<br>sin(a)-sin(b) = 2cos[(a+b)/2]sin[(a-b)/2]<br>cos(a)+cos(b) = 2cos[(a+b)/2]cos[(a-b)/2]<br>cos(a)-cos(b) = -2sin[(a+b)/2]sin[(a-b)/2]<br>tanA+tanB=sin(A+B)/cosAcosB<br>积化和差<br>sin(a)sin(b) = -1/2*[cos(a+b)-cos(a-b)]<br>cos(a)cos(b) = 1/2*[cos(a+b)+cos(a-b)]<br>sin(a)cos(b) = 1/2*[sin(a+b)+sin(a-b)]<br>cos(a)sin(b) = 1/2*[sin(a+b)-sin(a-b)]<br>万能公式<br>sin(a) = [2tan(a/2)] / {1+[tan(a/2)]²}<br>cos(a) = {1-[tan(a/2)]^2} / {1+[tan(a/2)]²}<br>tan(a) = [2tan(a/2)]/{1-[tan(a/2)]^2}<br>其它公式<br>a•sin(a)+b•cos(a) = [√(a²+b²)]*sin(a+c) [其中，tan(c)=b/a]<br>a•sin(a)-b•cos(a) = [√(a²+b²)]*cos(a-c) [其中，tan(c)=a/b]<br>1+sin(a) = [sin(a/2)+cos(a/2)]²;<br>1-sin(a) = [sin(a/2)-cos(a/2)]²;<br>其他非重点三角函数<br>csc(a) = 1/sin(a)<br>sec(a) = 1/cos(a)<br>双曲函数<br>sinh(a) = [e^a-e^(-a)]/2<br>cosh(a) = [e^a+e^(-a)]/2<br>tg h(a) = sin h(a)/cos h(a)<br>公式一：<br>设α为任意角，终边相同的角的同一三角函数的值相等：<br>sin（2kπ＋α）= sinα<br>cos（2kπ＋α）= cosα<br>tan（2kπ＋α）= tanα<br>cot（2kπ＋α）= cotα<br>公式二：<br>设α为任意角，π+α的三角函数值与α的三角函数值之间的关系：<br>sin（π＋α）= -sinα<br>cos（π＋α）= -cosα<br>tan（π＋α）= tanα<br>cot（π＋α）= cotα<br>公式三：<br>任意角α与 -α的三角函数值之间的关系：<br>sin（-α）= -sinα<br>cos（-α）= cosα<br>tan（-α）= -tanα<br>cot（-α）= -cotα<br>公式四：<br>利用公式二和公式三可以得到π-α与α的三角函数值之间的关系：<br>sin（π-α）= sinα<br>cos（π-α）= -cosα<br>tan（π-α）= -tanα<br>cot（π-α）= -cotα<br>公式五：<br>利用公式-和公式三可以得到2π-α与α的三角函数值之间的关系：<br>sin（2π-α）= -sinα<br>cos（2π-α）= cosα<br>tan（2π-α）= -tanα<br>cot（2π-α）= -cotα<br>公式六：<br>π/2±α及3π/2±α与α的三角函数值之间的关系：<br>sin（π/2+α）= cosα<br>cos（π/2+α）= -sinα<br>tan（π/2+α）= -cotα<br>cot（π/2+α）= -tanα<br>sin（π/2-α）= cosα<br>cos（π/2-α）= sinα<br>tan（π/2-α）= cotα<br>cot（π/2-α）= tanα<br>sin（3π/2+α）= -cosα<br>cos（3π/2+α）= sinα<br>tan（3π/2+α）= -cotα<br>cot（3π/2+α）= -tanα<br>sin（3π/2-α）= -cosα<br>cos（3π/2-α）= -sinα<br>tan（3π/2-α）= cotα<br>cot（3π/2-α）= tanα </p>
+<h2 id="指数运算法则"><a href="#指数运算法则" class="headerlink" title="指数运算法则"></a>指数运算法则</h2><img src="/%E6%8C%87%E6%95%B0%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99.png" class width="500" height="300">
+
+<h2 id="对数运算法则"><a href="#对数运算法则" class="headerlink" title="对数运算法则"></a>对数运算法则</h2><img src="/%E5%AF%B9%E6%95%B0%E8%BF%90%E7%AE%97.jpg" class width="800" height="500">
+
+
+
+<h2 id="一元二次方程基础"><a href="#一元二次方程基础" class="headerlink" title="一元二次方程基础"></a>一元二次方程基础</h2><p>一元二次方程一般形式</p>
+<img src="/%E4%B8%80%E5%85%83%E4%BA%8C%E6%AC%A1%E6%96%B9%E7%A8%8B.svg" class width="100" height="50">
+
+<p>根的公式：</p>
+<img src="/%E6%A0%B9%E7%9A%84%E5%85%AC%E5%BC%8F.png" class width="90" height="45">
+
+<p>韦达定理</p>
+<p>x1+x2=-b/a    x1x2=c/a</p>
+<p>判别式</p>
+<img src="/%E5%88%A4%E5%88%AB%E5%BC%8F.png" class width="90" height="45">
+
+<p>抛物线y=ax^2+bx+c顶点(-b/2a,c-b^2/4a)</p>
+<h2 id="因式分解"><a href="#因式分解" class="headerlink" title="因式分解"></a>因式分解</h2><p>平方和</p>
+<p>平方差</p>
+<p>立方和</p>
+<p>立方差</p>
+<h2 id="常用不等式"><a href="#常用不等式" class="headerlink" title="常用不等式"></a>常用不等式</h2><p>Hn&lt;=Gn&lt;=An&lt;=Qn<br>Hn&lt;=Gn&lt;=An&lt;=Qn<br>调和平均数：Hn=n∑ni=11xiHn=n∑i=1n1xi<br>几何平均数：Gn=∏ni=1xi−−−−−−√nGn=∏i=1nxin<br>算术平均数：An=∑ni=1xinAn=∑i=1nxin<br>平方平均数：Qn=∑ni=1x2in−−−−−−√Qn=∑i=1nxi2n<br>绝对值不等式<br>|a|−|b|&lt;=|a±b|&lt;=|a|+|b|<br>|a|−|b|&lt;=|a±b|&lt;=|a|+|b|<br>琴生不等式<br>凸函数：<br>设 f(x)f(x) 在区间 I 上有定义，如果对任意 x1,x2∈Ix1,x2∈I 和实数 λ∈(0,1)λ∈(0,1) 总有<br>f(λx1+(1−λ)x2)&lt;=λf(x1)+(1−λ)f(x2)<br>f(λx1+(1−λ)x2)&lt;=λf(x1)+(1−λ)f(x2)<br>成立，则称 f(x)f(x) 在区间 I 上为下凸函数<br>变形：<br>f(x1)f(x2)⋯f(xn)&gt;=f(x1+x2+⋯+xnn)<br>f(x1)f(x2)⋯f(xn)&gt;=f(x1+x2+⋯+xnn)<br>琴生不等式：<br>若 f 为 [a,b] 上的凸函数，则对任意 xi∈[a,b],λi&gt;0,∑ni=1λi=1xi∈[a,b],λi&gt;0,∑i=1nλi=1,有<br>f(∑i=1nλixi)&lt;=∑i=1nλif(xi)<br>f(∑i=1nλixi)&lt;=∑i=1nλif(xi)<br>伯努利不等式<br>对实数 x&gt;−1x&gt;−1<br>当 n&gt;=1n&gt;=1,有 (1+x)n&gt;=1+nx(1+x)n&gt;=1+nx<br>当 0&lt;=n&lt;=10&lt;=n&lt;=1，有 (1+x)n&lt;=1+nx(1+x)n&lt;=1+nx<br>当且仅当 n=0,1n=0,1 或 x=0x=0 时等号成立<br>一般式：<br>(1+x1+x2+x3+⋯+xn)&lt;=(1+x1)(1+x2)(1+x3)⋯(1+xn)<br>(1+x1+x2+x3+⋯+xn)&lt;=(1+x1)(1+x2)(1+x3)⋯(1+xn)<br>柯西不等式<br>∑i=1na2i∑i=1nb2i&gt;=(∑i=1naibi)2<br>∑i=1nai2∑i=1nbi2&gt;=(∑i=1naibi)2</p>
+<p>即 |a→||b→|&gt;=|a→ ˙b→||a→||b→|&gt;=|a→ ˙b→|<br>排序不等式<br>若数列 {an}、{bn}{an}、{bn} 满足单调不下降，则有：顺序和 &gt;= 乱序和 &gt;= 逆序和</p>
+<p>切比雪夫不等式<br>若有 a1&gt;=a2&gt;=⋯&gt;=an,b1&gt;=b2&gt;=⋯&gt;=bna1&gt;=a2&gt;=⋯&gt;=an,b1&gt;=b2&gt;=⋯&gt;=bn<br>n∑i=1n(aibi)&gt;=(∑i=1nai)(∑i=1nbi)&gt;=n∑i=1n(aibn−i+1)<br>n∑i=1n(aibi)&gt;=(∑i=1nai)(∑i=1nbi)&gt;=n∑i=1n(aibn−i+1)<br>放缩<br>1n2&lt;1n2−14=2(12n−1−12n+1)1n2&lt;1n2−14=2(12n−1−12n+1)<br>1n2&lt;1n(n−1)=1n−1−1n1n2&lt;1n(n−1)=1n−1−1n<br>lnx&lt;=x−1→lnxx&lt;=1−1xln⁡x&lt;=x−1→ln⁡xx&lt;=1−1x<br>1k√&gt;2k√+k+1√＝2(k+1−−−−√−k−−√)1k&gt;2k+k+1＝2(k+1−k)<br>1n+2√&lt;n+2−−−−√−n−−√1n+2&lt;n+2−n<br>2(n+1−−−−√−n−−√)&lt;1n√&lt;2(n−−√−n−1−−−−√)2(n+1−n)&lt;1n&lt;2(n−n−1)<br>ex1. a&gt;1，n∈Nn∈N，n&gt;1，求证 a−−√n−1&lt;a−1nan−1&lt;a−1n<br>令 x=a−−√n−1x=an−1，则 (x+1)n=a(x+1)n=a<br>即证 nx&lt;(x+1)n−1nx&lt;(x+1)n−1<br>(x+1)n−1=C0nxn+⋯+Cn−1nx+1−1&gt;Cn−1nx=nx(x+1)n−1=Cn0xn+⋯+Cnn−1x+1−1&gt;Cnn−1x=nx<br>ex2. 求证 ln223+ln333+⋯+lnnn3&lt;1eln⁡223+ln⁡333+⋯+ln⁡nn3&lt;1e<br>(lnxx)′=1−lnxx2(ln⁡xx)′=1−ln⁡xx2<br>∴x=e，(lnxx)max=1e∴x=e，(ln⁡xx)max=1e<br>∑ni=2lnii3&lt;∑ni=21ei2&lt;1e∑ni=21(i−1)i&lt;1e∑i=2nln⁡ii3&lt;∑i=2n1ei2&lt;1e∑i=2n1(i−1)i&lt;1e<br>ex3.<br>利用 (n−1)(n+1)&lt;=n2(n−1)(n+1)&lt;=n2<br>1⋅3⋅5⋯(2n−1)2⋅4⋅6⋅⋯⋅(2n)=12⋅32⋅52⋯(2n−1)2⋅(2n+1)22⋅42⋅62⋯(2n)2⋅(2n+1)−−−−−−−−−−−−−−−−√&lt;12n+1√1⋅3⋅5⋯(2n−1)2⋅4⋅6⋅⋯⋅(2n)=12⋅32⋅52⋯(2n−1)2⋅(2n+1)22⋅42⋅62⋯(2n)2⋅(2n+1)&lt;12n+1<br>ex4. 证明 ∑nk=112k−1∑k=1n12k−1<br>当 n&gt;=2n&gt;=2 时，(2n−1)−3⋅2n−2=2n−2−1(2n−1)−3⋅2n−2=2n−2−1<br>于是 12n−1&lt;=13⋅12n−212n−1&lt;=13⋅12n−2<br>∑nk=112k−1&lt;1+13∑n−2k=02−k&lt;53∑k=1n12k−1&lt;1+13∑k=0n−22−k&lt;53</p>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2020/01/13/%E9%AB%98%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2020/01/13/%E9%AB%98%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/";
+            const title         = "「高数基本知识」";
+            const excerpt       = `知识点全为摘录
+数列等差数列
+等差数列通项公式an=a1+(n-1)d
+前n项和Sn=n(a1+an)/2
+等比数列
+等比数列通项公式an=a1*q^(n-1)
+前n项和
+Sn=na1    q=1
+Sn=a1(1-q^n)/(1-q...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a>, <a class="tag-none-link" href="/tags/%E9%AB%98%E6%95%B0/" rel="tag">高数</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2020-01-14</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 函数的图像" href="/2020/01/11/函数的图像/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" 数列极限" href="/2020/01/17/数列极限/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2020/01/13/高数基本知识/',
+            url: 'https://xy-bz.github.io/2020/01/13/%E9%AB%98%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>

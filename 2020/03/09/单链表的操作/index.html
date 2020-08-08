@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>单链表的操作 | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="下面是单链表的操作，用c语言写的，可以和顺序表对应来看 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单链表的操作">
+<meta property="og:url" content="https://xy-bz.github.io/2020/03/09/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="下面是单链表的操作，用c语言写的，可以和顺序表对应来看 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2020-03-09T07:36:58.000Z">
+<meta property="article:modified_time" content="2020-03-09T13:08:41.946Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">单链表的操作</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2020-03-09
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <p> 下面是单链表的操作，用c语言写的，可以和顺序表对应来看</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _SINGLY_LINKED_LIST_H_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _SINGLY_LINED_LIST_H_H</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设计节点结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">pNext</span>;</span></span><br><span class="line">&#125; NODE, *pNODE;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建单向链表</span></span><br><span class="line"><span class="function">pNODE <span class="title">CreateSgLinkList</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印单向链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TraverseSgLinkList</span><span class="params">(pNODE pHead)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断单向链表是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">IsEmptySgLinkList</span><span class="params">(pNODE pHead)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算单向链表的长度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetLengthSgLinkList</span><span class="params">(pNODE pHead)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//向单向链表插入节点</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">InsertEleSgLinkList</span><span class="params">(pNODE pHead, <span class="keyword">int</span> pos, <span class="keyword">int</span> data)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//从单向链表删除节点</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">DeleteEleSgLinkList</span><span class="params">(pNODE pHead, <span class="keyword">int</span> pos)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除整个链表，释放内存</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FreeMemory</span><span class="params">(pNODE *ppHead)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建单向链表</span></span><br><span class="line"><span class="function">pNODE <span class="title">CreateSgLinkList</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, length, data;</span><br><span class="line">    pNODE p_new = <span class="literal">NULL</span>, pTail = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//创建头节点，头结点是第0个节点，后面的节点从1开始计数</span></span><br><span class="line">    pNODE pHead = (pNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;内存分配失败！\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    pHead-&gt;data = <span class="number">0</span>;</span><br><span class="line">    pHead-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    pTail = pHead;</span><br><span class="line">     </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入要创建链表的长度：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;length);</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;length+<span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        p_new = (pNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">NULL</span> == p_new)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;内存分配失败！\n&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;请输入第%d个节点的值：&quot;</span>, i);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;data);</span><br><span class="line">     </span><br><span class="line">        p_new-&gt;data = data;</span><br><span class="line">        p_new-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">        pTail-&gt;pNext = p_new;</span><br><span class="line">        pTail = p_new;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pHead;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印单向链表，不打印头结点的值。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TraverseSgLinkList</span><span class="params">(pNODE pHead)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pNODE pt = pHead-&gt;pNext;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;打印链表：&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span> (pt != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, pt-&gt;data);</span><br><span class="line">        pt = pt-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">IsEmptySgLinkList</span><span class="params">(pNODE pHead)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (pHead-&gt;pNext == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算单向链表长度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetLengthSgLinkList</span><span class="params">(pNODE pHead)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">    pNODE pt = pHead-&gt;pNext;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (pt != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        length++;</span><br><span class="line">        pt = pt-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> length;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//向单向链表插入一个节点,位置从1开始，到链表长度加1结束。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">InsertEleSgLinkList</span><span class="params">(pNODE pHead, <span class="keyword">int</span> pos, <span class="keyword">int</span> data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pNODE pt = <span class="literal">NULL</span>, p_new = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pos &gt; <span class="number">0</span> &amp;&amp; pos &lt; GetLengthSgLinkList(pHead) + <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        p_new = (pNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">NULL</span> == p_new)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;内存分配失败！\n&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line">        p_new-&gt;data = data;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            pos--;        </span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span> == pos)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            pHead  = pHead-&gt;pNext;</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        pt = pHead-&gt;pNext;</span><br><span class="line">        pHead-&gt;pNext = p_new;</span><br><span class="line">        p_new-&gt;pNext = pt;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//从单向链表中删除一个节点，位置从1开始，到链表长度结束。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">DeleteEleSgLinkList</span><span class="params">(pNODE pHead, <span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pNODE pt = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pos &gt; <span class="number">0</span> &amp;&amp; pos &lt; GetLengthSgLinkList(pHead) + <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            pos--;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span> == pos)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            pHead = pHead-&gt;pNext;</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        pt = pHead-&gt;pNext-&gt;pNext;</span><br><span class="line">        <span class="built_in">free</span>(pHead-&gt;pNext);</span><br><span class="line">        pHead-&gt;pNext = pt;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//删除整个单向链表，释放内存。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FreeMemory</span><span class="params">(pNODE *ppHead)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pNODE pt = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span> (*ppHead != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        pt = (*ppHead)-&gt;pNext;</span><br><span class="line">        <span class="built_in">free</span>(*ppHead);</span><br><span class="line">        *ppHead = pt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>, length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> position = <span class="number">0</span>, value = <span class="number">0</span>;</span><br><span class="line">    pNODE head = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    head = CreateSgLinkList();</span><br><span class="line">    </span><br><span class="line">    flag = IsEmptySgLinkList(head);</span><br><span class="line">    <span class="keyword">if</span> (flag)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单向链表为空！\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        length = GetLengthSgLinkList(head);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单向链表的长度为：%d\n&quot;</span>, length);</span><br><span class="line">        TraverseSgLinkList(head);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入要插入节点的位置和元素值(两个数用空格隔开)：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;position, &amp;value);</span><br><span class="line">    flag = InsertEleSgLinkList(head, position, value);</span><br><span class="line">    <span class="keyword">if</span> (flag)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;插入节点成功！\n&quot;</span>);</span><br><span class="line">        TraverseSgLinkList(head);</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;插入节点失败！\n&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    flag = IsEmptySgLinkList(head);</span><br><span class="line">    <span class="keyword">if</span> (flag)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单向链表为空，不能进行删除操作！\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;请输入要删除节点的位置：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;position);</span><br><span class="line">        flag = DeleteEleSgLinkList(head, position);</span><br><span class="line">        <span class="keyword">if</span> (flag)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;删除节点成功！\n&quot;</span>);</span><br><span class="line">            TraverseSgLinkList(head);</span><br><span class="line">        &#125;    </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;删除节点失败！\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    FreeMemory(&amp;head);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == head)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;已成功删除单向链表，释放内存完成！\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;删除单向链表失败，释放内存未完成！\n&quot;</span>);</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">请输入要创建链表的长度：5</span><br><span class="line">请输入第1个节点的值：1</span><br><span class="line">请输入第2个节点的值：2</span><br><span class="line">请输入第3个节点的值：3</span><br><span class="line">请输入第4个节点的值：4</span><br><span class="line">请输入第5个节点的值：5</span><br><span class="line">单向链表的长度为：5</span><br><span class="line">打印链表：1 2 3 4 5</span><br><span class="line">请输入要插入节点的位置和元素值(两个数用空格隔开)：2 3</span><br><span class="line">插入节点成功！</span><br><span class="line">打印链表：1 3 2 3 4 5</span><br><span class="line">请输入要删除节点的位置：2</span><br><span class="line">删除节点成功！</span><br><span class="line">打印链表：1 2 3 4 5</span><br><span class="line">已成功删除单向链表，释放内存完成！</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2020/03/09/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2020/03/09/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/";
+            const title         = "「单链表的操作」";
+            const excerpt       = ` 下面是单链表的操作，用c语言写的，可以和顺序表对应来看
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2020-03-09</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 小结2" href="/2020/03/09/小结2/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" 计算机网络两种模式区别" href="/2020/03/10/计算机网络两种模式区别/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2020/03/09/单链表的操作/',
+            url: 'https://xy-bz.github.io/2020/03/09/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>

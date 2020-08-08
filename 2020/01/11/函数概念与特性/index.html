@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>函数概念与特性 | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="函数 your browser does not support the video tag   假设有两个变量x、y，如果对于任意一个x都有唯一确定的一个y和它对应，那么就称y是x的函数。x的取值范围叫做这个函数的定义域，相应y的取值范围叫做函数的值域 反函数设函数y&#x3D;f(x)的定义域是D，值域是f(D)。如果对于值域f(D)中的每一个y，在D中有且只有一个x使得g(y)&#x3D;x，则按此对应法则得到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数概念与特性">
+<meta property="og:url" content="https://xy-bz.github.io/2020/01/11/%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="函数 your browser does not support the video tag   假设有两个变量x、y，如果对于任意一个x都有唯一确定的一个y和它对应，那么就称y是x的函数。x的取值范围叫做这个函数的定义域，相应y的取值范围叫做函数的值域 反函数设函数y&#x3D;f(x)的定义域是D，值域是f(D)。如果对于值域f(D)中的每一个y，在D中有且只有一个x使得g(y)&#x3D;x，则按此对应法则得到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2020-01-11T01:29:08.000Z">
+<meta property="article:modified_time" content="2020-01-11T12:44:03.951Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="高数">
+<meta property="article:tag" content="考研">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">函数概念与特性</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2020-01-11
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><video src="函数.mp4" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;">
+your browser does not support the video tag
+</video>
+
+<p>假设有两个变量x、y，如果对于任意一个x都有<strong>唯一确定的一个y</strong>和它对应，那么就称y是x的函数。x的取值范围叫做这个函数的定义域，相应y的取值范围叫做函数的值域</p>
+<h2 id="反函数"><a href="#反函数" class="headerlink" title="反函数"></a>反函数</h2><p>设函数y=f(x)的定义域是D，值域是f(D)。如果对于值域f(D)中的每一个y，在D中有且只有一个x使得g(y)=x，则按此对应法则得到了一个定义在f(D)上的函数，并把该函数称为函数y=f(x)的反函数</p>
+<ul>
+<li><p>严格单调函数一定有反函数，有反函数不一定严格单调</p>
+</li>
+<li><p>y=f(x)与x=f-1(y)的图像相同,图形关于y=x对称的原因是因为y与x互换的结果</p>
+</li>
+</ul>
+<h2 id="复合函数"><a href="#复合函数" class="headerlink" title="复合函数"></a>复合函数</h2><p>  复合函数 f (x)+ g (x) 的单调性 </p>
+<ul>
+<li><p>增函数 f (x) + 增函数 g(x) 是增函数</p>
+</li>
+<li><p>减函数 f (x) + 减函数 g(x) 是减函数</p>
+</li>
+<li><p>增函数 f (x) - 减函数 g(x) 是增函数. 4.减函数 f (x) - 增函数 g(x) 是减函数</p>
+<p>复合函数 f [g(x)] 的单调性</p>
+</li>
+<li><p>若 f(x) 与 g(x) 的单调性相同，则 f [g(x)] 为增函数</p>
+</li>
+<li><p>若 f(x) 与 g(x) 的单调性相反，则 f [g(x)] 为减函数.</p>
+</li>
+</ul>
+<h2 id="四种特性："><a href="#四种特性：" class="headerlink" title="四种特性："></a>四种特性：</h2><p><strong>有界性</strong><br>设f(x)的定义域为D，数集  I⊂D，如果存在某个正数M，对于任一x∈I，有 |f(x)|≤M，则称f(x)在I上<strong>有界</strong>；如果不存在这样的M，则称f(x)在I上<strong>无界</strong></p>
+<ul>
+<li>几何上，找得到上下界把图像包起来，称有界；解析上，找得到一个正数M，|f(x)|≤M，称有界</li>
+<li>有界还是无界首先<strong>指明区间I</strong>，不知区间，无法谈论有界性</li>
+<li>只要在区间I上存在一点x0，使得<img src="/%E6%9E%81%E9%99%90.png" class width="60" height="40">值为无穷大，就可以证明在区间I上无界</li>
+</ul>
+<p><strong>单调性</strong><br>f(x)定义域 D 上任意两个值x1,x2  ,有x1&lt;x2 ;若f(x1)&lt;f(x2) ,函数在D上**单调增加**;若 f(x1)&gt;f(x2),函数在D上<strong>单调减少</strong><br>注意<strong>单调性定义</strong>的不同表示方法</p>
+<img src="/%E5%87%BD%E6%95%B0%E5%8D%95%E8%B0%83%E6%80%A7%E5%AE%9A%E4%B9%89%E6%B3%95.png" class>
+
+<p><strong>奇偶性</strong><br>在定义域内的任意一个x,f(-x)=-f(x),则f(x)是奇函数；函数图像关于原点对称；若x=0有意义，<strong>f（0）=0</strong><br>在定义域内的任意一个x,f(-x)=f(x),则f(x)是偶函数；函数图像关于y轴对称；若x=0有意义，<strong>f‘（0）=0</strong><br>在定义域内的任意一个x,f(-x)=-f(x)且f(-x)=f(x)同时成立,则f(x)是既奇又偶函数<br>在定义域内的任意一个x,f(-x)=-f(x)与f(-x)=f(x)都不成立,则f(x)是非奇非偶函数<br>设f(x)定义在（l，-l）上的任意函数</p>
+<ul>
+<li>F(x)=f(x)-f(-x)必为奇函数，F(x)=f(x)+f(-x)必为偶函数y</li>
+<li>y=f(x)与y=-f(x)关于x对称;y=f(x)与y=f(-x)关于y对称;y=f(x)与y=-f(-x)关于原点对称</li>
+<li>y=f(x)关于x=T对称充要条件<strong>f(x)=f(2T-x)或f(T-x)=f(T+x)</strong></li>
+</ul>
+<p><strong>周期性</strong><br>设函数f(x)的定义域为D。如果存在一个正数T，使得对于任一x∈D有(x士T)∈D，且f(x+T)=f(x)恒成立，则称f(x)为周期函数，T称为f(x)的周期，通常我们说周期函数的周期是指最小正周期。周期函数的定义域D为至少一边的无界区间，若D为有界的，则该函数不具周期性</p>
+<h2 id="重要结论"><a href="#重要结论" class="headerlink" title="重要结论"></a>重要结论</h2><ul>
+<li>若f(x)是可导偶函数，则f’(x)奇函数</li>
+<li>若f(x)是可导奇函数，则f’(x)偶函数</li>
+<li>若f(x)是可导周期函数，则f’(x)也是以T为周期的周期函数</li>
+<li>连续的奇函数的一切原函数都是偶函数</li>
+<li>连续的偶函数的原函数只有一个是奇函数</li>
+<li>连续的函数以T为周期，且<img src="/fxdx.png" class width="100" height="60">，则f(x)的一切原函数也以T为周期</li>
+<li>f(x)在(a,b)区间内可导且f’(x)有界，则f(x)在(a,b)有界</li>
+</ul>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2020/01/11/%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2020/01/11/%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/";
+            const title         = "「函数概念与特性」";
+            const excerpt       = `函数
+your browser does not support the video tag
+
+
+假设有两个变量x、y，如果对于任意一个x都有唯一确定的一个y和它对应，那么就称y是x的函数。x的取值范围叫做这个函数的定义域，相应y的取...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a>, <a class="tag-none-link" href="/tags/%E9%AB%98%E6%95%B0/" rel="tag">高数</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2020-01-11</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 计算机网络概述" href="/2020/01/09/计算机网络概述/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" 函数的图像" href="/2020/01/11/函数的图像/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2020/01/11/函数概念与特性/',
+            url: 'https://xy-bz.github.io/2020/01/11/%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>

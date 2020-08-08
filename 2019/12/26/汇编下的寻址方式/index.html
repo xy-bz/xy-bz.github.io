@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/img/avatar.png">
+  <title>汇编下的寻址方式 | 土豆味番茄酱</title>
+  <meta name="author" content="xybz" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    
+      <meta name="description" itemprop="description" content="清晨，午后，深夜里的生活" />
+    
+  
+  <meta name="description" content="寻址方式要想了解寻址方式，首先得对计算机存储体系有一定了解  寄存器 cache 主存 辅存 网络  从上至下，存储速度由快变慢，存储容量由小变大 寄存器寻址模式   类型 格式 操作数值 名称    立即数 $Imm Imm 立即数寻址   寄存器 ra R[ra] 寄存器寻址   存储器 Imm M[Imm] 绝对寻址   存储器 (ra) M[R[ra]] 间接寻址   存储器 Imm(rb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编下的寻址方式">
+<meta property="og:url" content="https://xy-bz.github.io/2019/12/26/%E6%B1%87%E7%BC%96%E4%B8%8B%E7%9A%84%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:site_name" content="土豆味番茄酱">
+<meta property="og:description" content="寻址方式要想了解寻址方式，首先得对计算机存储体系有一定了解  寄存器 cache 主存 辅存 网络  从上至下，存储速度由快变慢，存储容量由小变大 寄存器寻址模式   类型 格式 操作数值 名称    立即数 $Imm Imm 立即数寻址   寄存器 ra R[ra] 寄存器寻址   存储器 Imm M[Imm] 绝对寻址   存储器 (ra) M[R[ra]] 间接寻址   存储器 Imm(rb">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta property="article:published_time" content="2019-12-26T11:24:39.000Z">
+<meta property="article:modified_time" content="2019-12-26T14:20:06.436Z">
+<meta property="article:author" content="xybz">
+<meta property="article:tag" content="计算机组成原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xy-bz.github.io/img/avatar.png">
+<meta name="twitter:site" content="@Candiinya">
+  <link rel="alternate" href="atom.xml" type="application/atom+xml">
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="highlight-css" href="/css/highlight.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  
+    <script async src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+    <script async src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.js"></script>
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="custom-background">
+    <div id="kratos-wrapper">
+        <div id="kratos-page">
+            <div id="kratos-header">
+                <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a></div>
+                <header id="kratos-header-section">
+                    <div class="container">
+                        <div class="nav-header">
+                            <div class="color-logo"><a href="/">土豆味番茄酱</a></div>
+                            <nav id="kratos-menu-wrap">
+                              <ul id="kratos-primary-menu" class="sf-menu">
+                              
+                                
+                                  <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                
+                              
+                                
+                                  <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                
+                              
+                              </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+<div class="kratos-start kratos-hero-2">
+    <!-- <div class="kratos-overlay"></div> -->
+    <div class="kratos-cover kratos-cover-2 text-center">
+        <div class="desc desc2 animate-box">
+            <a href="/"><h2>土豆味番茄酱</h2><br><span>个人记录的地方</span></a>
+        </div>
+    </div>
+</div>
+
+<div id="kratos-blog-post">
+    <div class="container">
+            <div class="row">
+                
+<div id="main">
+    <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                <h1 class="kratos-entry-title text-center">汇编下的寻址方式</h1>
+                
+                <div class="kratos-post-meta text-center">
+                    <span>
+                    <i class="fa fa-calendar"></i> 2019-12-26
+                    <i class="fa fa-folder"></i> 分类于 
+                    <i class="fa fa-user"></i> 作者 xybz
+                    </span>
+                </div>
+            </header>
+            <div class="kratos-post-content">
+                
+                <hr />
+                <h1 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h1><p>要想了解寻址方式，首先得对计算机存储体系有一定了解</p>
+<blockquote>
+<p>寄存器</p>
+<p>cache</p>
+<p>主存</p>
+<p>辅存</p>
+<p>网络</p>
+</blockquote>
+<p>从上至下，存储速度由快变慢，存储容量由小变大</p>
+<h2 id="寄存器寻址模式"><a href="#寄存器寻址模式" class="headerlink" title="寄存器寻址模式"></a>寄存器寻址模式</h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">格式</th>
+<th align="center">操作数值</th>
+<th align="center">名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">立即数</td>
+<td align="center">$Imm</td>
+<td align="center">Imm</td>
+<td align="center">立即数寻址</td>
+</tr>
+<tr>
+<td align="center">寄存器</td>
+<td align="center">ra</td>
+<td align="center">R[ra]</td>
+<td align="center">寄存器寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">Imm</td>
+<td align="center">M[Imm]</td>
+<td align="center">绝对寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">(ra)</td>
+<td align="center">M[R[ra]]</td>
+<td align="center">间接寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">Imm(rb)</td>
+<td align="center">M[Imm+R[rb]]</td>
+<td align="center">(基址 + 偏移量)寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">(rb,ri)</td>
+<td align="center">M[R[ra]+R[ri]]</td>
+<td align="center">变址寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">Imm(rb,ri)</td>
+<td align="center">M[lmm+R[rb]+R[ri]]</td>
+<td align="center">变址寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">(,ri,s)</td>
+<td align="center">M[R[ri]*s]</td>
+<td align="center">比例变址寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">Imm(,ri,s)</td>
+<td align="center">M[Imm+R[ri]*s]</td>
+<td align="center">比例变址寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">(rb,ri,s)</td>
+<td align="center">M[R[rb]+R[ri]*s]</td>
+<td align="center">比例变址寻址</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">Imm(rb,ri,s)</td>
+<td align="center">M[Imm+R[rb]+R[ri]*s]</td>
+<td align="center">比例变址寻址</td>
+</tr>
+</tbody></table>
+<p>指令的类型可以是立即数(i)，寄存器(R)，内存(M)。</p>
+<ul>
+<li><p>立即数(immediate)，在汇编中直接以常数的形式存在。</p>
+</li>
+<li><p>寄存器(register)，存在某个寄存器的内容。</p>
+</li>
+<li><p>内存引用，他会根据计算出来的地址（通常称为有效地址）访问某个内存位置。</p>
+</li>
+</ul>
+<p>表中最后一种比例变址寻址是常见形式，比较适合引用数组和结构元素。<br>这样的引用有四个部分组成：一个立即数Imm，一个基址寄存器rb ,一个变址寄存器ri和一个比例因子s，s必须是1、2、4或者8。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">int add(int a, int b)</span><br><span class="line">&#123;</span><br><span class="line">    return (a+b);</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a &#x3D;5;</span><br><span class="line">    int b &#x3D; 10;</span><br><span class="line">    int c[5] &#x3D; &#123; 1,2,3,4,5 &#125;;</span><br><span class="line">    int *a1 &#x3D; &amp;a;</span><br><span class="line">    int *b1 &#x3D; &amp;b;</span><br><span class="line">    int    *c1&#x3D;c;</span><br><span class="line">    add(5,10);</span><br><span class="line">    add(a, b);</span><br><span class="line">    for (size_t i &#x3D; 0; i &lt; sizeof(c) &#x2F; sizeof(c[0]); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;%d&quot;, c[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加上断点，进入调试。截取其中一段反汇编代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">    int a &#x3D; 5;</span><br><span class="line">01021878  mov         dword ptr [a],5  </span><br><span class="line">    int b &#x3D; 10;</span><br><span class="line">0102187F  mov         dword ptr [b],0Ah  </span><br><span class="line">    int c[5] &#x3D; &#123; 1,2,3,4,5 &#125;;</span><br><span class="line">01021886  mov         dword ptr [c],1  </span><br><span class="line">0102188D  mov         dword ptr [ebp-30h],2  </span><br><span class="line">01021894  mov         dword ptr [ebp-2Ch],3  </span><br><span class="line">0102189B  mov         dword ptr [ebp-28h],4  </span><br><span class="line">010218A2  mov         dword ptr [ebp-24h],5  </span><br><span class="line">    int *a1 &#x3D; &amp;a;</span><br><span class="line">010218A9  lea         eax,[a]  </span><br><span class="line">010218AC  mov         dword ptr [a1],eax  </span><br><span class="line">    int *b1 &#x3D; &amp;b;</span><br><span class="line">010218AF  lea         eax,[b]  </span><br><span class="line">010218B2  mov         dword ptr [b1],eax  </span><br><span class="line">    int    *c1&#x3D;c;</span><br><span class="line">010218B5  lea         eax,[c]  </span><br><span class="line">010218B8  mov         dword ptr [c1],eax  </span><br><span class="line">    add(5,10);</span><br><span class="line">010218BB  push        0Ah  </span><br><span class="line">010218BD  push        5  </span><br><span class="line">010218BF  call        add (0102127Bh)  </span><br><span class="line">010218C4  add         esp,8  </span><br><span class="line">    add(a, b);</span><br><span class="line">010218C7  mov         eax,dword ptr [b]  </span><br><span class="line">010218CA  push        eax  </span><br><span class="line">010218CB  mov         ecx,dword ptr [a]  </span><br><span class="line">010218CE  push        ecx  </span><br><span class="line">010218CF  call        add (0102127Bh)  </span><br><span class="line">010218D4  add         esp,8  </span><br><span class="line">    for (size_t i &#x3D; 0; i &lt; sizeof(c) &#x2F; sizeof(c[0]); i++)</span><br><span class="line">010218D7  mov         dword ptr [ebp-64h],0  </span><br><span class="line">010218DE  jmp         main+99h (010218E9h)  </span><br><span class="line">010218E0  mov         eax,dword ptr [ebp-64h]  </span><br><span class="line">010218E3  add         eax,1  </span><br><span class="line">010218E6  mov         dword ptr [ebp-64h],eax  </span><br><span class="line">010218E9  cmp         dword ptr [ebp-64h],5  </span><br><span class="line">010218ED  jae         main+0B6h (01021906h)  </span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;%d&quot;, c[i]);</span><br><span class="line">010218EF  mov         eax,dword ptr [ebp-64h]  </span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;%d&quot;, c[i]);</span><br><span class="line">010218F2  mov         ecx,dword ptr c[eax*4]  </span><br><span class="line">010218F6  push        ecx  </span><br><span class="line">010218F7  push        offset string &quot;%d&quot; (01026B30h)  </span><br><span class="line">010218FC  call        _printf (01021325h)  </span><br><span class="line">01021901  add         esp,8  </span><br><span class="line">    &#125;</span><br><span class="line">01021904  jmp         main+90h (010218E0h)  </span><br><span class="line">    return 0;</span><br><span class="line">01021906  xor         eax,eax  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 5;</span><br><span class="line">01021878  mov         dword ptr [a],5  </span><br><span class="line">    int b &#x3D; 10;</span><br><span class="line">0102187F  mov         dword ptr [b],0Ah  </span><br></pre></td></tr></table></figure>
+<p>mov表示传送数据<br>dword   双字 就是四个字节<br>ptr     pointer缩写 即指针<br>[]里的数据是一个地址值，这个地址指向一个双字型数据<br>5就是一个立即数，立即数引用<br>而a在这里可以理解成一个地址(变量名a可以理解成你给这块空间地址取的别名)，就是直接引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    int c[5] &#x3D; &#123; 1,2,3,4,5 &#125;;</span><br><span class="line">01021886  mov         dword ptr [c],1  </span><br><span class="line">0102188D  mov         dword ptr [ebp-30h],2  </span><br><span class="line">01021894  mov         dword ptr [ebp-2Ch],3  </span><br><span class="line">0102189B  mov         dword ptr [ebp-28h],4  </span><br><span class="line">010218A2  mov         dword ptr [ebp-24h],5  </span><br></pre></td></tr></table></figure>
+
+<p>ebp是一个通用寄存器，一般保存被调用的数据</p>
+<p>把4放到 [ebp-30h]就是变址寻址，Imm(rb,ri)的形式</p>
+<p>我们知道，数组是一段连续的内存空间，这五条的偏移量的差是28h-24h，即为4；而一个int数据是4个字节，为什么这样就一目了然</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;%d&quot;, c[i]);</span><br><span class="line">010218F2  mov         ecx,dword ptr c[eax*4]  </span><br><span class="line">010218F6  push        ecx  </span><br><span class="line">010218F7  push        offset string &quot;%d&quot; (01026B30h)  </span><br><span class="line">010218FC  call        _printf (01021325h)  </span><br><span class="line">01021901  add         esp,8  </span><br></pre></td></tr></table></figure>
+
+<p>mov         ecx,dword ptr c[eax*4] </p>
+<p>c[3]=4,c做首地址，寄存器间接寻址，ECX作为间址寄存器</p>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://xy-bz.github.io/2019/12/26/%E6%B1%87%E7%BC%96%E4%B8%8B%E7%9A%84%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://xy-bz.github.io/2019/12/26/%E6%B1%87%E7%BC%96%E4%B8%8B%E7%9A%84%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/";
+            const title         = "「汇编下的寻址方式」";
+            const excerpt       = `寻址方式要想了解寻址方式，首先得对计算机存储体系有一定了解
+
+寄存器
+cache
+主存
+辅存
+网络
+
+从上至下，存储速度由快变慢，存储容量由小变大
+寄存器寻址模式
+
+
+类型
+格式
+操作数值
+名称
+
+
+
+立即数
+$Imm
+Imm
+立即数...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2019-12-26</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 解析网页m3u8文件地址" href="/2019/12/24/解析网页m3u8文件地址/">&lt; 上一篇</a>
+                </div>
+                
+                
+                <div class="nav-next clearfix">
+                    <a title=" RSA非对称加密算法" href="/2019/12/28/RSA非对称加密算法/">下一篇 &gt;</a>
+                </div>
+                
+            </nav>
+        
+        
+            <div id="disqus_thread"></div>
+<script>
+    $(function(){
+        window.DISQUS = null;
+        new DisqusJS({
+            shortname: '',
+            siteName: '',
+            identifier: '2019/12/26/汇编下的寻址方式/',
+            url: 'https://xy-bz.github.io/2019/12/26/%E6%B1%87%E7%BC%96%E4%B8%8B%E7%9A%84%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/',
+            api: '',
+            apikey: '',
+            admin: '',
+            adminLabel: ''
+        });
+    });
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/SukkaW/DisqusJS">comments powered by DisqusJS.</a></noscript>
+        
+    </article>
+</section>
+</div>
+        
+            <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+                
+                    <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/img/avatar.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        
+            <p class="text-center">清晨，午后，深夜里的生活</p>
+        
+    </div>
+</aside>
+                
+                    <!-- Moved to about.ejs -->
+                
+                    
+
+                
+                    
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/android/" style="font-size: 0.8em;">android</a> <a href="/tags/blog/" style="font-size: 0.67em;">blog</a> <a href="/tags/c/" style="font-size: 0.63em;">c</a> <a href="/tags/cache/" style="font-size: 0.67em;">cache</a> <a href="/tags/git/" style="font-size: 0.63em;">git</a> <a href="/tags/google/" style="font-size: 0.63em;">google</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a> <a href="/tags/java/" style="font-size: 0.77em;">java</a> <a href="/tags/js/" style="font-size: 0.6em;">js</a> <a href="/tags/vs-code/" style="font-size: 0.6em;">vs code</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 0.6em;">其他</a> <a href="/tags/%E5%A2%99/" style="font-size: 0.63em;">墙</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 0.73em;">小结</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.63em;">嵌入式</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.6em;">快捷键</a> <a href="/tags/%E6%8A%A5%E9%94%99/" style="font-size: 0.67em;">报错</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 0.6em;">指针</a> <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" style="font-size: 0.6em;">播放器</a>
+      </div>
+  </aside>
+
+                
+                    
+  <aside id="krw-posts" class="widget widget-kratos-poststab">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/07/%E4%BD%BF%E7%94%A8ssh-key%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"><i class="fa  fa-book"></i> 使用ssh-key远程登录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/08/04/HTTPS%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> HTTPS相关知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/15/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B02/"><i class="fa  fa-book"></i> 常微分方程02</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%A0%88/"><i class="fa  fa-book"></i> 栈</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2020/07/14/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81%E5%88%B0%E7%A0%81%E4%BA%91/"><i class="fa  fa-book"></i> 托管代码到码云</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+                
+            </section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer">
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Candiinya"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2020 xybz 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Made with <i class="fa fa-heart throb" style="color:#d43f57"></i> by <a href="https://candinya.com" target="_blank" rel="nofollow">Candinya</a>.</li>
+                        </div>
+                        <div>
+                            <li>Hosted by <a href="https://github.io" target="_blank">Github Pages</a></li>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <div id="aplayer"></div>
+<script>
+$.ajax({
+    type:"get",
+    url:"",
+    dataType:"json",
+    success: function(data){
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            fixed: true,
+            order: 'random',
+            lrcType: 3,
+            audio: data
+        });
+    }
+});
+</script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+</body>
+</html>
